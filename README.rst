@@ -22,7 +22,7 @@ You must have geodjango, only tested with postgis (and lightly at that).
 
 Check out this source and run::
 
-    git submodule update
+    git submodule update --init
 
 run a ``manage.py shell`` and:
 
