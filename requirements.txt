@@ -19,3 +19,16 @@ django-ajax-validation==0.1.3
 django-uni-form==0.6.0
 template_utils==0.4p2
 django-staticfiles==0.1.2
+
+# we need the git repos here :(
+# http://github.com/skyl 
+# FIXME - need to package?
+# pip install -e git+git://github.com/skyl/django-geoms.git#egg=geoms 
+# ^- type of thing can not work for just a raw repo? 
+# Pull them down to your python path, 
+# either in ../yourproject/apps/ or 
+# your environment's site-packages/
+# django-geoms as geoms
+# django-world as world
+# django-olwidget as olwidget
+
