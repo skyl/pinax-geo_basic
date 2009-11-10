@@ -1,6 +1,6 @@
 [submodule "apps/world"]
 	path = apps/world
-    url = git@github.com:skyl/django-world.git
+	url = git@github.com:skyl/django-world.git
 [submodule "apps/geoms"]
 	path = apps/geoms
 	url = git@github.com:skyl/django-geoms.git
