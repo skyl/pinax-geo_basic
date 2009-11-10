@@ -113,6 +113,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "announcements.context_processors.site_wide_announcements",
     "account.context_processors.openid",
     "account.context_processors.account",
+    "geoms.context_processors.geom_media",
 )
 
 INSTALLED_APPS = (

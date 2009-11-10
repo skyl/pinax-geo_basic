@@ -31,6 +31,8 @@ urlpatterns = patterns('',
     (r'^announcements/', include('announcements.urls')),
     
     (r'^admin/(.*)', admin.site.root),
+
+    (r'^geoms/', include('geoms.urls')),
 )
 
 if settings.SERVE_MEDIA:
