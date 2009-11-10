@@ -90,7 +90,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.doc.XViewMiddleware',
     'pagination.middleware.PaginationMiddleware',
     'pinax.middleware.security.HideSensistiveFieldsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -136,7 +136,7 @@ INSTALLED_APPS = (
     'ajax_validation',
     'uni_form',
     'staticfiles',
-    'debug_toolbar',
+    #'debug_toolbar',
     
     # internal (for now)
     'basic_profiles',
