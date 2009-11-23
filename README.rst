@@ -51,8 +51,14 @@ run a ``manage.py shell`` and::
     >>> from world import load
     >>> load.run()
 
-as can be found in the `great GeoDjango docs`_.  
 Now you have the sample world application.
 
-.. _great GeoDjango docs: http://geodjango.org/docs/tutorial.html#id8
+If you want to work on the submodules, go into the directory such as::
+
+    $ cd apps/geoms
+
+and checkout the master branch before you start to modify the app::
+
+    $ git checkout master
+
 .. _check here: http://skyl.org/log/post/skyl/2009/11/nested-git-repositories-with-github-using-submodule-in-three-minutes/
