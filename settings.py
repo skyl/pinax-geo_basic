@@ -67,6 +67,8 @@ STATICFILES_DIRS = (
     ('pinax', os.path.join(PINAX_ROOT, 'media', PINAX_THEME)),
 )
 
+OLWIDGET_MEDIA_URL = os.path.join(STATIC_URL, "olwidget")
+
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
@@ -90,7 +92,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.doc.XViewMiddleware',
     'pagination.middleware.PaginationMiddleware',
     'pinax.middleware.security.HideSensistiveFieldsMiddleware',
-    #'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -136,7 +138,8 @@ INSTALLED_APPS = (
     'ajax_validation',
     'uni_form',
     'staticfiles',
-    #'debug_toolbar',
+    'django_extensions',
+    'debug_toolbar',
     
     # internal (for now)
     'basic_profiles',
@@ -189,4 +192,5 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 GOOGLE_API_KEY = 'ABQIAAAABH87p-yQOJj-sh06NusQiRTpH3CbXHjuCVmaTc5MkkU4wO1RRhTdrjDBgVDitkd2sidQwpIj12NE2w'
+
 
