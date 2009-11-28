@@ -47,5 +47,16 @@ run a ``manage.py shell`` and::
 
 Now you have the sample world application.
 
+<<<<<<< HEAD:README.rst
 .. _great GeoDjango docs: http://geodjango.org/docs/
+=======
+If you want to work on the submodules, go into the directory such as::
+
+    $ cd apps/geoms
+
+and checkout the master branch before you start to modify the app::
+
+    $ git checkout master
+
+>>>>>>> 8659c929ed7266a279fbe6f3a7c0e843a2b3074c:README.rst
 .. _check here: http://skyl.org/log/post/skyl/2009/11/nested-git-repositories-with-github-using-submodule-in-three-minutes/
