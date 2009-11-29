@@ -92,7 +92,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.doc.XViewMiddleware',
     'pagination.middleware.PaginationMiddleware',
     'pinax.middleware.security.HideSensistiveFieldsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -151,6 +151,7 @@ INSTALLED_APPS = (
     'olwidget',
     'world',
     'geoms',
+    'piston',
 )
 
 ABSOLUTE_URL_OVERRIDES = {
@@ -191,6 +192,13 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }
 
-GOOGLE_API_KEY = 'ABQIAAAABH87p-yQOJj-sh06NusQiRTpH3CbXHjuCVmaTc5MkkU4wO1RRhTdrjDBgVDitkd2sidQwpIj12NE2w'
 
+# Uncommenting this key means that you agree to the Google Terms:
+# http://code.google.com/apis/maps/terms.html
+# GOOGLE_API_KEY = 'ABQIAAAABH87p-yQOJj-sh06NusQiRTpH3CbXHjuCVmaTc5MkkU4wO1RRhTdrjDBgVDitkd2sidQwpIj12NE2w'
+
+#geodjango test settings
+TEST_RUNNER='django.contrib.gis.tests.run_tests'
+TEST_DATABASE_NAME = 'geotest'
+POSTGIS_TEMPLATE='template_postgis'
 
