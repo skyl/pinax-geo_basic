@@ -24,7 +24,6 @@ django-staticfiles==0.1.2
 # http://github.com/skyl 
 # FIXME - need to package?
 # pip install -e git+git://github.com/skyl/django-geoms.git#egg=geoms 
-# ^- type of thing can not work for just a raw repo? 
 # Pull them down to your python path, 
 # either in ../yourproject/apps/ or 
 # your environment's site-packages/
