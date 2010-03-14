@@ -1,0 +1,139 @@
+{% extends 'attractions/base.html' %}
+{% load attraction_tags %}
+{% load i18n %}
+
+{% block extra_head %}
+{{olmap.media}}
+{% endblock %}
+
+{% block body_class %}areas{% endblock %}
+
+{% block subnav %}
+<!-- sub nav -->
+<ul class="subnav">
+    {% for a in areas %}
+    <li><a href="{{ a.get_absolute_url }}">{{ a.nom }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <div class="map_wrapper">
+        {{olmap}}
+    </div>
+    <!-- showreel -->
+    <div id="slideshow">
+    {% if areas %}
+        {% for item in areas %}
+            {% if item.image %}
+    <div class="gallery gallery_wrapper">
+        <img src="{{item.image.url}}" width="620" height="260" alt="" />
+        <div {% if item.background %}style="background: {{item.background}}"{% endif %}>{{item.headline|safe}}</div>
+    </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    </div>
+    <!-- accordion -->
+    {% if headlines %}
+        {% for headline in headlines %}
+            {{ headline.html|safe }}
+        {% endfor %}
+    {% endif %}
+</div>
+    <!-- sidebar -->
+    <div class="sidebar">
+    	
+        <!-- tabs -->
+        <div class="tabs"> 
+            <ul class="idTabs"> 
+                <li><a href="#idTab1" class="selected">Tags</a></li> 
+                <li><a href="#idTab2">Hotels</a></li>
+                <li><a href="#idTab3">Transport</a></li>
+            </ul>
+            <div id="idTab1" class="rhtab">
+                {% cloud all_tags %}
+                <form action="/attractions/tag/lang/{{LANGUAGE_CODE}}/" id="tag_search_form" enctype="multipart/form-data" method="POST">
+                	<fieldset>
+                        {{tag_search.tag_search}}
+                    </fieldset>
+                	<fieldset>
+                    <input class="search" type="submit" name="search" value=""/> 
+                    </fieldset>
+                <form>
+            </div>
+            <div id="idTab2" class="rhtab">
+                <form name="searchhotels" id="searchhotels" class="searchform" action="">
+                	<fieldset>
+                    	<input class="location" type="text" value="Search Hotels" />
+                    </fieldset>
+                    <fieldset>
+                        <label class="date">Check in date</label>
+                        <input name="checkout_date" id="checkout_date" class="date" type="text" value="dd/mm/yyyy" />
+                    </fieldset>
+                    <fieldset>
+                        <label class="date">Check out date</label>
+                        <input name="checkin_date" id="checkin_date" class="date" type="text" value="dd/mm/yyyy" />
+                    </fieldset>
+                    <fieldset>
+                    	<input type="checkbox" class="check" />
+                        <label class="check">I don't have specific dates</label>
+                    </fieldset>
+                    <fieldset>
+                      	<input class="search" type="submit" name="search" value="" />
+                    </fieldset>
+                </form>
+            </div>
+            <div id="idTab3" class="rhtab">
+                <form name="searchtransport" id="searchtransport" action="" class="searchform">
+                	<fieldset>
+                    	<input class="location" value="Search Transport" />
+                    </fieldset>
+                    <fieldset>
+                      	<input class="search" type="submit" name="search" value="" />
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+        <div class="flickr_wrapper">
+            <h2>{% trans "Photo Album" %}</h2>
+            <ul class="flickr">
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block document_ready %}
+$("#id_tag_search").autocomplete("/attractions/ajax/tag_search/{{LANGUAGE_CODE}}", { minChars: 2}) 
+$('#slideshow').cycle({ fx: 'fade', height: '260px' });
+// hacky flickr stuff
+$.getJSON("http://api.flickr.com/services/feeds/groups_pool.gne?id=1340769@N24&lang=en-us&format=json&jsoncallback=?",
+function(data){
+    // append each photo to a li
+    $.each(data.items, function(i, item) {
+        i = i++;
+        $('<img alt=""/>').attr("src",
+        item.media.m).appendTo("ul.flickr").wrap('<li><a href="' + item.media.m + '" rel="group"  title="' + item.title + '"></a></li>');
+        // convert to small thumb
+        $("ul.flickr li a img").each(function() {
+            var smallThumb = $(this).attr("src").replace(/_m.jpg$/i,'_s.jpg'); 
+            $(this).attr("src", smallThumb);
+        });
+        // modify to regular image size
+        $("ul.flickr li a").each(function() {
+            var modURL = $(this).attr("href").replace(/_m.jpg$/i,'.jpg');
+            $(this).attr("href", modURL);
+            $(this).fancybox({                                                                                                                
+                'titlePosition' : 'over'
+            });
+        });
+        if(i==11) return false;    
+    });
+});
+{% endblock %}
+
+{% block javascript_includes %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.cycle.all.2.72.js"></script>
+{% endblock %}

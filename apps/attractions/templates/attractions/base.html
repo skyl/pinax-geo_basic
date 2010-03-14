@@ -1,0 +1,19 @@
+{% extends 'site_base.html' %}
+{% load attraction_tags %}
+{% load i18n %}
+
+{% block head_title %}
+{% for x, y in breadcrumb %}
+{% if not forloop.first %}{{x}}{% if not forloop.last %}: {% endif %}{% endif %}
+{% endfor %}
+{% endblock %}
+
+{% block body_class %}attractions{% endblock %}
+
+
+{% block above_body %}
+<div>
+    <span class="map_legend"><span>{% trans "Map Colour Key:" %}</span> <img src="{{ STATIC_URL }}images/pinkdot.png" alt="pink dot"/> {% trans "= Hotels" %} <img src="{{ STATIC_URL }}images/bluedot.png" alt="blue dot"/>{% trans "= Attractions" %}</span>
+    {% show_breadcrumb breadcrumb %}
+</div>
+{% endblock %}
